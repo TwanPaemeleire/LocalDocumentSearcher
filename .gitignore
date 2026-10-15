@@ -1,0 +1,93 @@
+# ==========================================
+# Visual Studio 2026 - C++ (MSBuild)
+# Static Library + Application
+# ==========================================
+
+# ------------------------------
+# Build Folders
+# ------------------------------
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+Debug/
+Release/
+DebugPublic/
+ReleasePublic/
+ipch/
+
+# ------------------------------
+# Visual Studio Generated Files
+# ------------------------------
+.vs/
+*.VC.db
+*.VC.opendb
+*.opensdf
+
+# ------------------------------
+# User-Specific Files
+# ------------------------------
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ------------------------------
+# C++ Intermediate Files
+# ------------------------------
+*.obj
+*.iobj
+*.ipdb
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.lib
+*.tlog
+*.lastbuildstate
+*.unsuccessfulbuild
+*.cache
+*.log
+
+# ------------------------------
+# Static Library Outputs
+# (ignore generated libs from builds)
+# ------------------------------
+*.lib
+*.exp
+
+# ------------------------------
+# Executables
+# ------------------------------
+*.exe
+*.out
+
+# ------------------------------
+# IntelliSense
+# ------------------------------
+*.ipch
+
+# ------------------------------
+# MSBuild
+# ------------------------------
+*.props.user
+*.targets.user
+
+# ------------------------------
+# Windows OS Files
+# ------------------------------
+Thumbs.db
+ehthumbs.db
+.DS_Store
+
+
+# ------------------------------
+# Un-ignore Third Party Libraries
+# ------------------------------
+!3rdParty/
+!3rdParty/**
+
+!3rdParty/**/*.lib
+!3rdParty/**/*.dll
+!3rdParty/**/*.pdb
