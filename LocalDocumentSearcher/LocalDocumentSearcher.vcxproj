@@ -168,12 +168,14 @@
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_sdl3.cpp" />
     <ClCompile Include="imgui_impl_sdlrenderer3.cpp" />
+    <ClCompile Include="imgui_stdlib.cpp" />
     <ClCompile Include="imgui_tables.cpp" />
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ProjectRunner.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SearchRequest.cpp" />
+    <ClCompile Include="UIHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="imgui_impl_sdl3.h" />
     <ClInclude Include="imgui_impl_sdlrenderer3.h" />
     <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imgui_stdlib.h" />
     <ClInclude Include="imstb_rectpack.h" />
     <ClInclude Include="imstb_textedit.h" />
     <ClInclude Include="imstb_truetype.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="SearchRequestData.h" />
     <ClInclude Include="SearchResultData.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="UIHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

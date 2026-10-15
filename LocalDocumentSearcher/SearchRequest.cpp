@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include "SearchResultData.h"
+#include "UIHandler.h"
 
 SearchRequest::SearchRequest(const SearchRequestData& data)
 	:m_Data(data)
@@ -62,6 +63,8 @@ void SearchRequest::ExecuteSearchRequest()
             std::cout << "| Name: " << resultData.FileName;
             std::cout << " | Size: " << resultData.FileSizeInBytes;
             std::cout << " | Path: " << resultData.FilePath << std::endl;
+
+			UIHandler::GetInstance().AddSearchResult(resultData);
         }
 
         // If checking this entry's type failed, don't recurse further into it

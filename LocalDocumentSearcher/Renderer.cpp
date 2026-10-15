@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_sdlrenderer3.h"
+#include "UIHandler.h"
 
 void Renderer::Init()
 {
@@ -44,18 +45,8 @@ void Renderer::Render()
     ImGui_ImplSDL3_NewFrame();
     ImGui::NewFrame();
 
+	UIHandler::GetInstance().Render();
 
-    /////////
-    ImGui::Begin(
-        "Local Document Search",
-        nullptr,
-        ImGuiWindowFlags_NoDecoration |
-        ImGuiWindowFlags_NoSavedSettings
-    );
-
-    ImGui::Text("My file search tool");
-    ImGui::End();
-    /////////
 
     ImGui::Render();
     SDL_RenderClear(m_Renderer);

@@ -2,6 +2,8 @@
 #include <chrono>
 #include <thread>
 #include "Renderer.h"
+#include <SDL3/SDL.h>
+#include "imgui_impl_sdl3.h"
 
 void ProjectRunner::Run()
 {
@@ -14,8 +16,15 @@ void ProjectRunner::Run()
 	{
 		const auto currentTime = std::chrono::high_resolution_clock::now();
 		float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-
 		lastTime = currentTime;
+
+		SDL_Event event;
+		while (SDL_PollEvent(&event))
+		{
+			ImGui_ImplSDL3_ProcessEvent(&event);
+			if (event.type == SDL_EVENT_QUIT) m_ShouldContinue = false;
+			if (event.type == SDL_EVENT_WINDOW_CLOSE_REQUESTED) m_ShouldContinue = false;
+		}
 
 		Renderer::GetInstance().Render();
 
