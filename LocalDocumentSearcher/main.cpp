@@ -24,8 +24,7 @@ void RevealFile(const std::wstring& path)
 
 int main(int argc, char* argv[])
 {
-	ProjectRunner runner;
-    runner.Run();
+	ProjectRunner::GetInstance().Run();
     //SearchRequestData requestData;
     //requestData.TextToSearch = L"test";
     //requestData.DirectoryToSearch = L"\\\\?\\C:\\C++Projects\\";

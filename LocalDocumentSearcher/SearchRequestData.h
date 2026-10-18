@@ -12,4 +12,5 @@ struct SearchRequestData
 	bool SearchFileContent = false;
 	bool CaseSensitive = false;
 	bool LookForExactMatch = false;
+	bool IgnoreRecyclingBin = true;
 };

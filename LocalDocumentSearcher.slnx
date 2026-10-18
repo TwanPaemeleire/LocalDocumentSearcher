@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="LocalDocumentSearcher/LocalDocumentSearcher.vcxproj" />
+  <Project Path="LocalDocumentSearcher/LocalDocumentSearcher.vcxproj" Id="85a73141-b5e2-4712-8535-804d7ae22745" />
 </Solution>

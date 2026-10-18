@@ -1,5 +1,7 @@
 #pragma once
-class ProjectRunner
+#include "Singleton.h"
+
+class ProjectRunner final : public Singleton<ProjectRunner>
 {
 public:
 	void Run();

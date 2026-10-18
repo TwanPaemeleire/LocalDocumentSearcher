@@ -13,9 +13,9 @@ void Renderer::Init()
         std::cerr << "Error: SDL_Init(): " << SDL_GetError() << std::endl;
         return;
     }
-    
-    SDL_WindowFlags window_flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN | SDL_WINDOW_HIGH_PIXEL_DENSITY;
-    m_Window = SDL_CreateWindow("local Document Searcher", 400, 600, window_flags);
+    //SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN |
+    SDL_WindowFlags window_flags =  SDL_WINDOW_HIGH_PIXEL_DENSITY | SDL_WINDOW_TRANSPARENT | SDL_WINDOW_OPENGL | SDL_WINDOW_BORDERLESS;
+    m_Window = SDL_CreateWindow("local Document Searcher", 1200, 600, window_flags);
     if (m_Window == nullptr)
     {
         std::cerr << "Error: SDL_CreateWindow(): " << SDL_GetError() << std::endl;
@@ -47,7 +47,6 @@ void Renderer::Render()
 
 	UIHandler::GetInstance().Render();
 
-
     ImGui::Render();
     SDL_RenderClear(m_Renderer);
     ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), m_Renderer);
@@ -63,4 +62,11 @@ void Renderer::Cleanup()
     SDL_DestroyRenderer(m_Renderer);
     SDL_DestroyWindow(m_Window);
     SDL_Quit();
+}
+
+ImVec2 Renderer::GetWindowSize() const
+{
+    int x, y;
+	SDL_GetWindowSize(m_Window, &x, &y);
+	return ImVec2(static_cast<float>(x), static_cast<float>(y));
 }

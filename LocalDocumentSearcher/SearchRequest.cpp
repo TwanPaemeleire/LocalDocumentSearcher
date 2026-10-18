@@ -31,19 +31,33 @@ void SearchRequest::ExecuteSearchRequest()
         const std::filesystem::path& path = entry.path();
         std::wstring filename = path.filename().wstring();
         if(!m_Data.CaseSensitive) std::transform(filename.begin(), filename.end(), filename.begin(), ::tolower);
-            
+
+		if (path.filename().wstring() == L"$Recycle.Bin" && m_Data.IgnoreRecyclingBin) // Check if we're in the recycling bin, and whether or not we should ignore it
+		{
+			it.disable_recursion_pending();
+			it.increment(errorCode);
+            if (errorCode) // Check if there was an error during the incrementation
+            {
+                std::cerr << "Traversal error: " << errorCode.message() << '\n';
+            }
+			continue;
+		}
+
         bool meetsSearchConditions = false;
-
         bool nameIsMatch = (m_Data.LookForExactMatch) ? filename == m_Data.TextToSearch : filename.find(m_Data.TextToSearch) != std::wstring::npos;
+		bool extensionIsMatch = (m_Data.ExtensionToFilter.empty()) ? true : path.extension() == m_Data.ExtensionToFilter;
+		bool entryTypeIsMatch = (m_Data.SearchFolderName && isDirectory) || (m_Data.SearchFileName && !isDirectory);
 
-        if (isDirectory && m_Data.SearchFolderName && nameIsMatch)
+        if (nameIsMatch && entryTypeIsMatch)
         {
-            meetsSearchConditions = true;
+            std::wstring extension = path.extension();
         }
-        if (!isDirectory && m_Data.SearchFileName && nameIsMatch)
-        {
-            meetsSearchConditions = true;
-        }
+
+		if (nameIsMatch && extensionIsMatch && entryTypeIsMatch)
+		{
+			meetsSearchConditions = true;
+		}
+
         if (!meetsSearchConditions && m_Data.SearchFileContent)
         {
             // Search inside file, keep m_Data.LookForExactMatch in account
@@ -73,12 +87,13 @@ void SearchRequest::ExecuteSearchRequest()
             it.disable_recursion_pending();
             std::cerr << "Type error: " << path.string() << " | " << typeError.message() << '\n';
         }
-        errorCode.clear();
+
         it.increment(errorCode);
         if (errorCode) // Check if there was an error during the incrementation
         {
             std::cerr << "Traversal error: " << errorCode.message() << '\n';
         }
+		errorCode.clear();
     }
     std::cout << "Finished!" << std::endl;
 }
